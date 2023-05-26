@@ -6,10 +6,11 @@ int main() {
 	int tamanho_vetor;
     char buffer[256];
     string arqnome;
-    double pos;
+    double pos, pos2;
 
     ifstream &arquivo = abreArq();
     ofstream saida1 ("saida1.txt", ios_base::out|ios_base::trunc);
+    ofstream saida2 ("saida2.txt", ios_base::out|ios_base::trunc);
 
 	while (!arquivo.eof()) {
         if (arquivo >> tamanho_vetor){
@@ -24,7 +25,7 @@ int main() {
             printf("Numero de elementos na entrada: %d\n", tamanho_vetor);	
 
             saida1 << "SEQ=SHELL" << endl;
-            pos = sortSHELL(vetorSort, tamanho_vetor);
+            sortSHELL(vetorSort, tamanho_vetor, &pos, &pos2);
             saida1.seekp(pos);
             cout << "Feito SHELLSORT com " << tamanho_vetor << " elementos e escrito no arquivo" << endl;
 
@@ -33,7 +34,7 @@ int main() {
                 vetorSort[i] = nVetor[i];
             }
             saida1 << "SEQ=KNUTH" << endl;
-            pos = sortKNUTH(vetorSort,tamanho_vetor);
+            sortKNUTH(vetorSort,tamanho_vetor, &pos, &pos2);
             saida1.seekp(pos);
             cout << "Feito KNUTHSORT com " << tamanho_vetor << " elementos e escrito no arquivo" << endl;
 
@@ -43,7 +44,7 @@ int main() {
             }
 
             saida1 << "SEQ=CIURA" << endl;
-            pos = sortCIURA(vetorSort,tamanho_vetor);
+            sortCIURA(vetorSort,tamanho_vetor, &pos, &pos2);
             saida1.seekp(pos);
             cout << "Feito CIURASORT com " << tamanho_vetor << " elementos e escrito no arquivo" << endl;
         }

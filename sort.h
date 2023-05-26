@@ -29,10 +29,12 @@ ifstream& abreArq(){
 }
 
 // ShellSort com o método do Shell, potências de 2, retorna a posição de leitura do arquivo
-double sortSHELL(int a[], int tam){
+void sortSHELL(int a[], int tam, double *pos, double *pos2){
 
     ofstream saidaSHELL ("saida1.txt", ios_base::out|ios_base::app);
-    double pos;
+    ofstream saida2SHELL ("saida2.txt", ios_base::out|ios_base::app);
+    double pos, pos2;
+
     // h = tamanho do espaço entre cada valor escolhido para fazer o sort
     for (int h = tam/2; h > 0; h /=2){
         // n = fator que escolhe os elementos os quais serão feitos o sort
@@ -51,15 +53,15 @@ double sortSHELL(int a[], int tam){
         }
         saidaSHELL << "INCR=" << h << endl;
     }
-    pos = saidaSHELL.tellp();
-    return pos;
+    *pos = saidaSHELL.tellp();
 }
 
 // ShellSort com o método do KNUTH, 3h + 1, retorna a posição de leitura do arquivo
-double sortKNUTH(int a[], int tam){
+void sortKNUTH(int a[], int tam, double *pos, double *pos2){
 
     ofstream saidaKNUTH ("saida1.txt", ios_base::out|ios_base::app);
-    double pos;
+    ofstream saida2KNUTH ("saida2.txt", ios_base::out|ios_base::app);
+    double pos, pos2;
 
     // h = tamanho do espaço entre cada valor escolhido para fazer o sort
     int h = 1;
@@ -86,15 +88,15 @@ double sortKNUTH(int a[], int tam){
         saidaKNUTH << "INCR=" << h << endl;
         h /= 3;
     }
-    pos = saidaKNUTH.tellp();
-    return pos;
+    *pos = saidaKNUTH.tellp();
 }
 
 // ShellSort com o método do CIURA, 1, 4, 10, 23, 57, 132, 301, 701, a partir do 701 multiplicar por 2.25, retorna a posição de leitura do arquivo
-double sortCIURA(int a[], int tam){
+void sortCIURA(int a[], int tam, double *pos, double *pos2){
 
     ofstream saidaCIURA ("saida1.txt", ios_base::out|ios_base::app);
-    double pos;
+    ofstream saida2CIURA ("saida2.txt", ios_base::out|ios_base::app);
+    double pos, pos2;
     int ciura = 0;
 
     // h = tamanho do espaço entre cada valor escolhido para fazer o sort
@@ -157,6 +159,5 @@ double sortCIURA(int a[], int tam){
         saidaCIURA << "INCR=" << h[count] << endl;
         count--;
     }
-    pos = saidaCIURA.tellp();
-    return pos;
+    *pos = saidaCIURA.tellp();
 }

@@ -7,6 +7,7 @@ int main() {
     string arqnome;
 
     ifstream &arquivo = abreArq();
+    ofstream saida1 ("saida1.txt", ios_base::out|ios_base::trunc);
 
 	while (!arquivo.eof()) {
         if (arquivo >> tamanho_vetor){
@@ -14,8 +15,11 @@ int main() {
 
             for (int i=0; i<tamanho_vetor; i++){
                 arquivo >> nVetor[i];
+                saida1 << nVetor[i];
+                saida1 << " ";
                 printf("%d ", nVetor[i]);
             }
+            saida1 << "\n";
             printf ("Numero de elementos na entrada: %d\n", tamanho_vetor);	
 
             sortSHELL(nVetor, tamanho_vetor);

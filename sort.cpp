@@ -17,10 +17,13 @@ int main() {
     ofstream saida2 ("saida2.txt", ios_base::out|ios_base::trunc);
 
 	while (!arquivo.eof()) {
+        // lê o primeiro número, se leu alguma coisa, associa ao tamanho do vetor
         if (arquivo >> tamanho_vetor){
+            // cria o vetor que será preenchido e realizado o sort, como também o vetor final ordenado
             int nVetor[tamanho_vetor];
             int vetorSort[tamanho_vetor];
 
+            // lê todos os valores do arquivo e coloca num vetor
             for (int i=0; i<tamanho_vetor; i++){
                 arquivo >> nVetor[i];
                 saida1 << nVetor[i] << " ";
@@ -28,6 +31,7 @@ int main() {
             }
             printf("Numero de elementos na entrada: %d\n", tamanho_vetor);	
 
+            // SHELL SORT COM SEQ. DO SHELL
             saida1 << "SEQ=SHELL" << endl;
             saida2 << "SHELL," << tamanho_vetor << ",";
 
@@ -41,11 +45,13 @@ int main() {
             saida1.seekp(pos);
             cout << "Feito SHELLSORT com " << tamanho_vetor << " elementos e escrito no arquivo" << endl;
 
+            // Preenche o vetor que será feito o sort novamente para repetir a operação
             for (int i=0; i<tamanho_vetor; i++){
                 saida1 << nVetor[i] << " ";
                 vetorSort[i] = nVetor[i];
             }
 
+            // SHELL SORT COM A SEQ. DO KNUTH
             saida1 << "SEQ=KNUTH" << endl;
             saida2 << "KNUTH," << tamanho_vetor << ",";
 
@@ -59,11 +65,13 @@ int main() {
             saida1.seekp(pos);
             cout << "Feito KNUTHSORT com " << tamanho_vetor << " elementos e escrito no arquivo" << endl;
 
+            // Preenche o vetor que será feito o sort novamente para repetir a operação
             for (int i=0; i<tamanho_vetor; i++){
                 saida1 << nVetor[i] << " ";
                 vetorSort[i] = nVetor[i];
             }
 
+            // SHELL SORT COM SEQ. DO CIURA
             saida1 << "SEQ=CIURA" << endl;
             saida2 << "CIURA," << tamanho_vetor << ",";
 

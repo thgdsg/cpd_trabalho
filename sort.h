@@ -4,8 +4,12 @@
 #include <sstream>
 #include <iostream>
 #include <cmath>
+#include <ctime>
 
 using namespace std;
+
+// Mudar caso esteja usando um computador diferente
+string dadosProcessador = "4.00 GHz Quad-Core Intel Core i7-6700K";
 
 // abre o arquivo
 ifstream& abreArq(){
@@ -33,7 +37,6 @@ void sortSHELL(int a[], int tam, double *pos, double *pos2){
 
     ofstream saidaSHELL ("saida1.txt", ios_base::out|ios_base::app);
     ofstream saida2SHELL ("saida2.txt", ios_base::out|ios_base::app);
-    double pos, pos2;
 
     // h = tamanho do espaço entre cada valor escolhido para fazer o sort
     for (int h = tam/2; h > 0; h /=2){
@@ -61,7 +64,6 @@ void sortKNUTH(int a[], int tam, double *pos, double *pos2){
 
     ofstream saidaKNUTH ("saida1.txt", ios_base::out|ios_base::app);
     ofstream saida2KNUTH ("saida2.txt", ios_base::out|ios_base::app);
-    double pos, pos2;
 
     // h = tamanho do espaço entre cada valor escolhido para fazer o sort
     int h = 1;
@@ -96,7 +98,6 @@ void sortCIURA(int a[], int tam, double *pos, double *pos2){
 
     ofstream saidaCIURA ("saida1.txt", ios_base::out|ios_base::app);
     ofstream saida2CIURA ("saida2.txt", ios_base::out|ios_base::app);
-    double pos, pos2;
     int ciura = 0;
 
     // h = tamanho do espaço entre cada valor escolhido para fazer o sort

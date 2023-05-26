@@ -18,7 +18,6 @@ int main() {
 
 	while (!arquivo.eof()) {
         // lê o primeiro número, se leu alguma coisa, associa ao tamanho do vetor
-        printf("TAMANHO VETOR: %d\n", tamanho_vetor);
         if (arquivo >> tamanho_vetor){
             // Caso onde o vetor tem 10000 elementos ou menos: declara o vetor como vetor normal, sem alocação especial de memória
             if (tamanho_vetor <= 10000){

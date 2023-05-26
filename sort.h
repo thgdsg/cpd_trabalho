@@ -28,8 +28,10 @@ ifstream& abreArq(){
 }
 
 // ShellSort com o método do Shell, potências de 2
-void sortSHELL(int a[], int tam){
+double sortSHELL(int a[], int tam){
 
+    ofstream saidaSHELL ("saida1.txt", ios_base::out|ios_base::app);
+    double pos;
     // h = tamanho do espaço entre cada valor escolhido para fazer o sort
     for (int h = tam/2; h > 0; h /=2){
         // n = fator que escolhe os elementos os quais serão feitos o sort
@@ -43,5 +45,11 @@ void sortSHELL(int a[], int tam){
 
             a[j] = valorTemp;
         }
+        for (int i=0; i<tam; i++){
+            saidaSHELL << a[i] << " ";
+        }
+        saidaSHELL << "INCR=" << tam/h << endl;
     }
+    pos = saidaSHELL.tellp();
+    return pos;
 }

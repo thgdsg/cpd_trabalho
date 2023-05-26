@@ -36,6 +36,16 @@ int main() {
             pos = sortKNUTH(vetorSort,tamanho_vetor);
             saida1.seekp(pos);
             cout << "Feito KNUTHSORT com " << tamanho_vetor << " elementos e escrito no arquivo" << endl;
+
+            for (int i=0; i<tamanho_vetor; i++){
+                saida1 << nVetor[i] << " ";
+                vetorSort[i] = nVetor[i];
+            }
+
+            saida1 << "SEQ=CIURA" << endl;
+            pos = sortCIURA(vetorSort,tamanho_vetor);
+            saida1.seekp(pos);
+            cout << "Feito CIURASORT com " << tamanho_vetor << " elementos e escrito no arquivo" << endl;
         }
 	}
     return 0;

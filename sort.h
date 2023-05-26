@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
@@ -57,7 +58,7 @@ double sortSHELL(int a[], int tam){
 // ShellSort com o método do KNUTH, 3h + 1, retorna a posição de leitura do arquivo
 double sortKNUTH(int a[], int tam){
 
-    ofstream saidaSHELL ("saida1.txt", ios_base::out|ios_base::app);
+    ofstream saidaKNUTH ("saida1.txt", ios_base::out|ios_base::app);
     double pos;
 
     // h = tamanho do espaço entre cada valor escolhido para fazer o sort
@@ -79,12 +80,83 @@ double sortKNUTH(int a[], int tam){
             a[j] = valorTemp;
         }
         for (int i=0; i<tam; i++){
-            saidaSHELL << a[i] << " ";
+            saidaKNUTH << a[i] << " ";
         }
 
-        saidaSHELL << "INCR=" << h << endl;
+        saidaKNUTH << "INCR=" << h << endl;
         h /= 3;
     }
-    pos = saidaSHELL.tellp();
+    pos = saidaKNUTH.tellp();
+    return pos;
+}
+
+// ShellSort com o método do CIURA, 1, 4, 10, 23, 57, 132, 301, 701, a partir do 701 multiplicar por 2.25, retorna a posição de leitura do arquivo
+double sortCIURA(int a[], int tam){
+
+    ofstream saidaCIURA ("saida1.txt", ios_base::out|ios_base::app);
+    double pos;
+    int ciura = 0;
+
+    // h = tamanho do espaço entre cada valor escolhido para fazer o sort
+    int h[8] = {1, 4, 10, 23, 57, 132, 301, 701};
+    int count = 0;
+    while (h[count] < tam){
+        count++;
+        if (count > 7)
+            break;
+    }
+    if (count == 8){
+        ciura = 701;
+        while (ciura < tam){
+            ciura = floor(ciura * 2.25);
+        }
+        ciura = ceil(ciura / 2.25);
+        count--;
+    }
+    count--;
+
+    if (ciura >= 701){
+        while(ciura >= 701){
+
+            // n = fator que escolhe os elementos os quais serão feitos o sort
+            for (int n = ciura; n < tam; n+= 1){
+                int valorTemp = a[n];
+
+                // j = posição do elemento
+                int j;
+                for (j = n; j >= ciura && a[j - ciura] > valorTemp; j -= ciura)
+                    a[j] = a[j - ciura];
+
+                a[j] = valorTemp;
+            }
+            for (int i=0; i<tam; i++){
+                saidaCIURA << a[i] << " ";
+            }
+
+            saidaCIURA << "INCR=" << ciura << endl;
+            ciura = round(ciura / 2.25);
+        }
+    }
+    while (count >= 0){
+
+        // n = fator que escolhe os elementos os quais serão feitos o sort
+        for (int n = h[count]; n < tam; n+= 1){
+            int valorTemp = a[n];
+
+            // j = posição do elemento
+            int j;
+            for (j = n; j >= h[count] && a[j - h[count]] > valorTemp; j -= h[count])
+                a[j] = a[j - h[count]];
+
+            a[j] = valorTemp;
+        }
+        for (int i=0; i<tam; i++){
+            saidaCIURA << a[i] << " ";
+        }
+
+        saidaCIURA << "INCR=" << h[count] << endl;
+        count--;
+    }
+    pos = saidaCIURA.tellp();
     return pos;
 }

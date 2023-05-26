@@ -27,7 +27,7 @@ ifstream& abreArq(){
     return *arq;
 }
 
-// ShellSort com o método do Shell, potências de 2
+// ShellSort com o método do Shell, potências de 2, retorna a posição de leitura do arquivo
 double sortSHELL(int a[], int tam){
 
     ofstream saidaSHELL ("saida1.txt", ios_base::out|ios_base::app);
@@ -48,7 +48,42 @@ double sortSHELL(int a[], int tam){
         for (int i=0; i<tam; i++){
             saidaSHELL << a[i] << " ";
         }
-        saidaSHELL << "INCR=" << tam/h << endl;
+        saidaSHELL << "INCR=" << h << endl;
+    }
+    pos = saidaSHELL.tellp();
+    return pos;
+}
+
+// ShellSort com o método do KNUTH, 3h + 1, retorna a posição de leitura do arquivo
+double sortKNUTH(int a[], int tam){
+
+    ofstream saidaSHELL ("saida1.txt", ios_base::out|ios_base::app);
+    double pos;
+
+    // h = tamanho do espaço entre cada valor escolhido para fazer o sort
+    int h = 1;
+    while (h < tam)
+        h = h*3 + 1;
+    h /= 3;
+
+    while (h >= 1){
+        // n = fator que escolhe os elementos os quais serão feitos o sort
+        for (int n = h; n < tam; n+= 1){
+            int valorTemp = a[n];
+
+            // j = posição do elemento
+            int j;
+            for (j = n; j >= h && a[j - h] > valorTemp; j -= h)
+                a[j] = a[j - h];
+
+            a[j] = valorTemp;
+        }
+        for (int i=0; i<tam; i++){
+            saidaSHELL << a[i] << " ";
+        }
+
+        saidaSHELL << "INCR=" << h << endl;
+        h /= 3;
     }
     pos = saidaSHELL.tellp();
     return pos;

@@ -3,11 +3,15 @@ using namespace std;
 
 int main() {
 
+    // Inicializando todas as variaveis que serão utilizadas
 	int tamanho_vetor;
     char buffer[256];
     string arqnome;
-    double pos, pos2;
+    double pos;
+    clock_t start_t, end_t;
+    double tempo;
 
+    // Inicializando o stream de I/O, para ler o arquivo de entrada e manipular os arquivos de saída
     ifstream &arquivo = abreArq();
     ofstream saida1 ("saida1.txt", ios_base::out|ios_base::trunc);
     ofstream saida2 ("saida2.txt", ios_base::out|ios_base::trunc);
@@ -26,9 +30,15 @@ int main() {
 
             saida1 << "SEQ=SHELL" << endl;
             saida2 << "SHELL," << tamanho_vetor << ",";
-            sortSHELL(vetorSort, tamanho_vetor, &pos, &pos2);
+
+            start_t = clock();
+            sortSHELL(vetorSort, tamanho_vetor, &pos);
+            end_t = clock();
+
+            tempo = (double)(end_t - start_t) / CLOCKS_PER_SEC;
+            saida2 << tempo*1000 << "," << dadosProcessador << endl;
+
             saida1.seekp(pos);
-            saida2.seekp(pos2);
             cout << "Feito SHELLSORT com " << tamanho_vetor << " elementos e escrito no arquivo" << endl;
 
             for (int i=0; i<tamanho_vetor; i++){
@@ -38,9 +48,15 @@ int main() {
 
             saida1 << "SEQ=KNUTH" << endl;
             saida2 << "KNUTH," << tamanho_vetor << ",";
-            sortKNUTH(vetorSort,tamanho_vetor, &pos, &pos2);
+
+            start_t = clock();
+            sortKNUTH(vetorSort,tamanho_vetor, &pos);
+            end_t = clock();
+
+            tempo = (double)(end_t - start_t) / CLOCKS_PER_SEC;
+            saida2 << tempo*1000 << "," << dadosProcessador << endl;
+
             saida1.seekp(pos);
-            saida2.seekp(pos2);
             cout << "Feito KNUTHSORT com " << tamanho_vetor << " elementos e escrito no arquivo" << endl;
 
             for (int i=0; i<tamanho_vetor; i++){
@@ -50,9 +66,15 @@ int main() {
 
             saida1 << "SEQ=CIURA" << endl;
             saida2 << "CIURA," << tamanho_vetor << ",";
-            sortCIURA(vetorSort,tamanho_vetor, &pos, &pos2);
+
+            start_t = clock();
+            sortCIURA(vetorSort,tamanho_vetor, &pos);
+            end_t = clock();
+
+            tempo = (double)(end_t - start_t) / CLOCKS_PER_SEC;
+            saida2 << tempo*1000 << "," << dadosProcessador << endl;
+
             saida1.seekp(pos);
-            saida2.seekp(pos2);
             cout << "Feito CIURASORT com " << tamanho_vetor << " elementos e escrito no arquivo" << endl;
         }
 	}

@@ -1,1 +1,12 @@
-CIURA,98,
+SHELL,100,0,4.00 GHz Quad-Core Intel Core i7-6700K
+KNUTH,100,0.001,4.00 GHz Quad-Core Intel Core i7-6700K
+CIURA,100,0.001,4.00 GHz Quad-Core Intel Core i7-6700K
+SHELL,1000,0.004,4.00 GHz Quad-Core Intel Core i7-6700K
+KNUTH,1000,0.003,4.00 GHz Quad-Core Intel Core i7-6700K
+CIURA,1000,0.003,4.00 GHz Quad-Core Intel Core i7-6700K
+SHELL,10000,0.055,4.00 GHz Quad-Core Intel Core i7-6700K
+KNUTH,10000,0.037,4.00 GHz Quad-Core Intel Core i7-6700K
+CIURA,10000,0.043,4.00 GHz Quad-Core Intel Core i7-6700K
+SHELL,100000,0.752,4.00 GHz Quad-Core Intel Core i7-6700K
+KNUTH,100000,0.495,4.00 GHz Quad-Core Intel Core i7-6700K
+CIURA,100000,0.599,4.00 GHz Quad-Core Intel Core i7-6700K

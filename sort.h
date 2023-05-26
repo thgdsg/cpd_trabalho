@@ -33,13 +33,17 @@ ifstream& abreArq(){
 }
 
 // ShellSort com o método do Shell, potências de 2, retorna a posição de leitura do arquivo
-void sortSHELL(int a[], int tam, double *pos, double *pos2){
+void sortSHELL(int a[], int tam, double *pos){
 
     ofstream saidaSHELL ("saida1.txt", ios_base::out|ios_base::app);
-    ofstream saida2SHELL ("saida2.txt", ios_base::out|ios_base::app);
 
     // h = tamanho do espaço entre cada valor escolhido para fazer o sort
-    for (int h = tam/2; h > 0; h /=2){
+    int h = 1;
+    while (h < tam)
+        h = h*2;
+    h /= 2;
+
+    while (h >= 1){
         // n = fator que escolhe os elementos os quais serão feitos o sort
         for (int n = h; n < tam; n+= 1){
             int valorTemp = a[n];
@@ -55,15 +59,15 @@ void sortSHELL(int a[], int tam, double *pos, double *pos2){
             saidaSHELL << a[i] << " ";
         }
         saidaSHELL << "INCR=" << h << endl;
+        h /= 2;
     }
     *pos = saidaSHELL.tellp();
 }
 
 // ShellSort com o método do KNUTH, 3h + 1, retorna a posição de leitura do arquivo
-void sortKNUTH(int a[], int tam, double *pos, double *pos2){
+void sortKNUTH(int a[], int tam, double *pos){
 
     ofstream saidaKNUTH ("saida1.txt", ios_base::out|ios_base::app);
-    ofstream saida2KNUTH ("saida2.txt", ios_base::out|ios_base::app);
 
     // h = tamanho do espaço entre cada valor escolhido para fazer o sort
     int h = 1;
@@ -94,10 +98,9 @@ void sortKNUTH(int a[], int tam, double *pos, double *pos2){
 }
 
 // ShellSort com o método do CIURA, 1, 4, 10, 23, 57, 132, 301, 701, a partir do 701 multiplicar por 2.25, retorna a posição de leitura do arquivo
-void sortCIURA(int a[], int tam, double *pos, double *pos2){
+void sortCIURA(int a[], int tam, double *pos){
 
     ofstream saidaCIURA ("saida1.txt", ios_base::out|ios_base::app);
-    ofstream saida2CIURA ("saida2.txt", ios_base::out|ios_base::app);
     int ciura = 0;
 
     // h = tamanho do espaço entre cada valor escolhido para fazer o sort

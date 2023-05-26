@@ -5,6 +5,8 @@
 #include <iostream>
 #include <cmath>
 #include <ctime>
+#include <iomanip>
+#include <vector>
 
 using namespace std;
 
